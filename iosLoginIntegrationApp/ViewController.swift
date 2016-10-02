@@ -30,7 +30,6 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
     }
     
     func fetchProfile() {
-        print("Inside Fetch Profile")
             
         let parameters = ["fields":"email,first_name,last_name,picture.type(large)"] //set request permission
         FBSDKGraphRequest(graphPath: "me", parameters: parameters).start(completionHandler: { (connection, result, error) -> Void in
@@ -59,10 +58,6 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
         
         fetchProfile()
-        
-        print("******************************************************")
-        print("Completed Login")
-        print("******************************************************")
     }
     
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
