@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMaps
 
 
 class ViewController: UIViewController, FBSDKLoginButtonDelegate {
@@ -74,6 +75,22 @@ class ViewController: UIViewController, FBSDKLoginButtonDelegate {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func viewMap(_ sender: UIButton) {
+        
+        // Create a GMSCameraPosition that tells the map to display the
+        // coordinate 42.36,71.06 at zoom level 7.
+        let camera = GMSCameraPosition.camera(withLatitude: 42.36, longitude: -71.06, zoom: 7.0)
+        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+        mapView.isMyLocationEnabled = true
+        view = mapView
+        
+        // Creates a marker in the center of the map.
+        let marker = GMSMarker()
+        marker.position = CLLocationCoordinate2D(latitude: 42.36, longitude: -71.06)
+        marker.title = "Boston"
+        marker.snippet = "United States of America"
+        marker.map = mapView
+    }
 
 }
 
